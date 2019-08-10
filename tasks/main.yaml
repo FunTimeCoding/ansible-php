@@ -1,1 +1,24 @@
 ---
+- homebrew:
+    name: php
+  when: ansible_system == 'Darwin'
+
+- stat:
+    path: /usr/local/lib/php/pecl/20170718/xdebug.so
+  register: xdebug_check
+  when: ansible_system == 'Darwin'
+
+- pear:
+    name: pecl/xdebug
+    executable: /usr/local/bin/pecl
+  when: ansible_system == 'Darwin' and xdebug_check.stat.exists == False
+
+- stat:
+    path: /usr/local/lib/php/pecl/20170718/zmq.so
+  register: zmq_check
+  when: ansible_system == 'Darwin'
+
+- pear:
+    name: pecl/zmq
+    state: present
+  when: ansible_system == 'Darwin' and zmq_check.stat.exists == False
