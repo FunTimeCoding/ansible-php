@@ -1,4 +1,4 @@
 ---
 dependencies:
-- role: phpbrew
-- role: zmq
+- { role: phpbrew, when: phpbrew.compile }
+- role: zero-message-queue
