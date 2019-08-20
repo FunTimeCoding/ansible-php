@@ -11,7 +11,7 @@
 - pear:
     name: pecl/xdebug
     executable: /usr/local/bin/pecl
-  when: ansible_system == 'Darwin' and xdebug_check.stat.exists == False
+  when: ansible_system == 'Darwin' and not xdebug_check.stat.exists
 
 - stat:
     path: /usr/local/lib/php/pecl/20170718/zmq.so
@@ -21,4 +21,4 @@
 - pear:
     name: pecl/zmq
     state: present
-  when: ansible_system == 'Darwin' and zmq_check.stat.exists == False
+  when: ansible_system == 'Darwin' and not zmq_check.stat.exists
