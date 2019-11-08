@@ -3,7 +3,7 @@
 LIST=$(dpkg --list | grep -E 'dotdeb|\.adition' | awk '{ print $2"="$3 }')
 LENGTH=$(echo "${LIST}" | wc -l)
 COUNT=0
-FILE=role/php/templates/php-pins
+FILE=roles/php/templates/php-pins
 cat /dev/null > "${FILE}"
 
 for ELEMENT in ${LIST}; do
